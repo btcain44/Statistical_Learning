@@ -1,0 +1,46 @@
+---
+title: "Distribution_Creation"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+##Setting universal parameters we will be using
+```{r Set Parameters}
+##Lets first set a seed
+set.seed(1)
+
+##Set parameters
+b_0 = 3
+b_1 = 2
+sigma_2 = 2
+n = 300
+```
+
+##The following markdown section will be used to create the A1 distribution
+```{r A1 Distribution}
+##Create the distribution
+x = sort(runif(n,min=0,max=100))
+e = rnorm(n,0,sqrt(sigma_2))
+y = b_0 + b_1*x + e
+
+##Plot the distribution 
+plot(y~x,main='A1 Generated Data',xlab='X',ylab='Y')
+abline(b_0,b_1,col='red')
+```
+
+```{r A2 Distribution}
+##Create the distribution (use same x as last time)
+
+
+##Generate the plot
+```
+
+```{r A3 Distribution}
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
