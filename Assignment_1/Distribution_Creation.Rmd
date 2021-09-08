@@ -11,9 +11,6 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ##Setting universal parameters we will be using
 ```{r Set Parameters}
-##Lets first set a seed
-set.seed(1)
-
 ##Set parameters
 b_0 = 3
 b_1 = 2
@@ -23,8 +20,11 @@ n = 300
 
 ##The following markdown section will be used to create the A1 distribution
 ```{r A1 Distribution}
+##Set seed for dataset generation
+set.seed(1)
+
 ##Create the distribution
-x = sort(runif(n,min=0,max=100))
+x = sort(runif(n,min=0,max=15))
 e = rnorm(n,0,sqrt(sigma_2))
 y = b_0 + b_1*x + e
 
@@ -34,13 +34,34 @@ abline(b_0,b_1,col='red')
 ```
 
 ```{r A2 Distribution}
-##Create the distribution (use same x as last time)
+##Set seed for dataset generation
+set.seed(1)
 
+##Create the distribution 
+x = sort(runif(n,min=0,max=15))
+e = runif(n, min = -sqrt(24)/2, max = -sqrt(24)/2+sqrt(24))
+y = b_0 + b_1*x + e
 
 ##Generate the plot
+plot(y~x,main='A2 Generated Data',xlab='X',ylab='Y')
+abline(b_0,b_1,col='red')
 ```
 
 ```{r A3 Distribution}
+##Set the seed for this module
+set.seed(1)
+
+##We will relax the iid assumption and have our random error come from two different
+##distributions, a normal and uniform distribution
+x = sort(runif(n,min=0,max=15))
+e1 = runif(n/2, min = -sqrt(24)/2, max = -sqrt(24)/2+sqrt(24))
+e2 = rnorm(n/2,0,sqrt(sigma_2))
+e = c(e1,e2)
+y = b_0 + b_1*x + e
+
+##Generate the plot
+plot(y~x,main='A3 Generated Data',xlab='X',ylab='Y')
+abline(b_0,b_1,col='red')
 ```
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
