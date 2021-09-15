@@ -3,14 +3,16 @@ title: "Distribution_Creation"
 output: pdf_document
 ---
 
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
 
-##Setting universal parameters we will be using
+
 ```{r Set Parameters}
+library(tinytex)
+
 ##Set parameters
 b_0 = 3
 b_1 = 2
@@ -18,13 +20,15 @@ sigma_2 = 2
 n = 300
 ```
 
-##The following markdown section will be used to create the A1 distribution
+## A1 Data Generation
+The following graph displays the dataset generated under A1, which implies error terms are iid normally distributed with $\mu = 0$ and and $\sigma^2=2$ in our case.
+
 ```{r A1 Distribution}
 ##Set seed for dataset generation
 set.seed(1)
 
 ##Create the distribution
-x = sort(runif(n,min=0,max=15))
+x = sort(runif(n,min=0,max=5))
 e = rnorm(n,0,sqrt(sigma_2))
 y = b_0 + b_1*x + e
 
@@ -33,12 +37,17 @@ plot(y~x,main='A1 Generated Data',xlab='X',ylab='Y')
 abline(b_0,b_1,col='red')
 ```
 
+##A2 Data Generation
+The next graph plots a dataset generated under A2, where the assumption that $\epsilon_i$ follow a normal distribution are relaxed, and rather just requires $\epsilon_i$ and $\epsilon_j$ are iid with $Var[\epsilon_i]=\sigma^2$ and $E[\epsilon_i]=0$. 
+
+To generate this data, we instead draw random errors from a uniform distribution, parameterized in the following way: $f(\epsilon) = \frac{1}{\beta}\cdot I_{(\alpha,\alpha+\beta)}(\epsilon)$, with $\alpha = -\frac{\sqrt{24}}{2}$ and $\beta = \sqrt{24}$. This will result in $E[\epsilon_i]=0$ and $Var[\epsilon_i]=\sigma^2=2$.
+
 ```{r A2 Distribution}
 ##Set seed for dataset generation
 set.seed(1)
 
 ##Create the distribution 
-x = sort(runif(n,min=0,max=15))
+x = sort(runif(n,min=0,max=5))
 e = runif(n, min = -sqrt(24)/2, max = -sqrt(24)/2+sqrt(24))
 y = b_0 + b_1*x + e
 
@@ -47,13 +56,16 @@ plot(y~x,main='A2 Generated Data',xlab='X',ylab='Y')
 abline(b_0,b_1,col='red')
 ```
 
+## A3 Data Generation
+This graph below plots the generated dataset under A3, which relaxes the iid assumption previously required under A1 and A2. We must also preserve that $E[\epsilon_i]=0$ and $Var[\epsilon_i]=\sigma^2=2$ and that $\epsilon_i$ and $\epislon_j$ are uncorrelated for $i \neq j$. To do this, we create two vectors of random errors each containing 150 observations, one vector generates $\epsilon_i$ from the uniform distribution above with $E[\epsilon_i]=0$ and $Var[\epsilon_i]=2$ and the other vector generates $\epsilon_i$ from a normal distribution with $\mu=0$ and $\sigma^2=2$.  
+
 ```{r A3 Distribution}
 ##Set the seed for this module
 set.seed(1)
 
 ##We will relax the iid assumption and have our random error come from two different
 ##distributions, a normal and uniform distribution
-x = sort(runif(n,min=0,max=15))
+x = sort(runif(n,min=0,max=5))
 e1 = runif(n/2, min = -sqrt(24)/2, max = -sqrt(24)/2+sqrt(24))
 e2 = rnorm(n/2,0,sqrt(sigma_2))
 e = c(e1,e2)
@@ -63,5 +75,11 @@ y = b_0 + b_1*x + e
 plot(y~x,main='A3 Generated Data',xlab='X',ylab='Y')
 abline(b_0,b_1,col='red')
 ```
+
+## Interpretation:
+
+One important thing to note is that for each vector of $x$ values generated, the range was from 0-5 as it became more difficult to visually assess the differences in the plots over a larger range of x's. 
+
+In terms of visual differences, we can see in the A1 Generated Data plot, that the points are very normally distributed across the true population mean line and it is obvious that the residuals are normally distributed. Moving to the A2 Generated Data chart, where the residuals are iid on a uniform distribution, we can see that the data are spread much more uniformly in relation to the true population mean line. We can see this by directly comparing the A1 and A2 plots, in A1 we see a few residuals that are straying away from the population mean line and might be considered outliers, however in A2 we don't have points that are far enough away from the rest of the points to be considered outliers. This is likely because the residuals are uniformly distributed so we don't observe outlier values like we do from the tails of a normal distribution. Finally, in the A3 Generated data plot we can see how the points switch from having uniformly distributed residuals to normally distributed residuals around $x=2.5$. Although the residuals are not iid from one single distribution, they still come from two distributions with the same variance of $Var[\epsilon_i=]\sigma^2=2$ and where $E[\epsilon_i=0]$, thus satisfying A3, but not A1 or A2.
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

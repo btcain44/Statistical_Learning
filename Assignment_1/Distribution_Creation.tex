@@ -1,0 +1,242 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Distribution\_Creation},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifluatex
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+
+\title{Distribution\_Creation}
+\author{}
+\date{\vspace{-2.5em}}
+
+\begin{document}
+\maketitle
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tinytex)}
+
+\DocumentationTok{\#\#Set parameters}
+\NormalTok{b\_0 }\OtherTok{=} \DecValTok{3}
+\NormalTok{b\_1 }\OtherTok{=} \DecValTok{2}
+\NormalTok{sigma\_2 }\OtherTok{=} \DecValTok{2}
+\NormalTok{n }\OtherTok{=} \DecValTok{300}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{a1-data-generation}{%
+\subsection{A1 Data Generation}\label{a1-data-generation}}
+
+The following graph displays the dataset generated under A1, which
+implies error terms are iid normally distributed with \(\mu = 0\) and
+and \(\sigma^2=2\) in our case.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\#Set seed for dataset generation}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{1}\NormalTok{)}
+
+\DocumentationTok{\#\#Create the distribution}
+\NormalTok{x }\OtherTok{=} \FunctionTok{sort}\NormalTok{(}\FunctionTok{runif}\NormalTok{(n,}\AttributeTok{min=}\DecValTok{0}\NormalTok{,}\AttributeTok{max=}\DecValTok{5}\NormalTok{))}
+\NormalTok{e }\OtherTok{=} \FunctionTok{rnorm}\NormalTok{(n,}\DecValTok{0}\NormalTok{,}\FunctionTok{sqrt}\NormalTok{(sigma\_2))}
+\NormalTok{y }\OtherTok{=}\NormalTok{ b\_0 }\SpecialCharTok{+}\NormalTok{ b\_1}\SpecialCharTok{*}\NormalTok{x }\SpecialCharTok{+}\NormalTok{ e}
+
+\DocumentationTok{\#\#Plot the distribution }
+\FunctionTok{plot}\NormalTok{(y}\SpecialCharTok{\textasciitilde{}}\NormalTok{x,}\AttributeTok{main=}\StringTok{\textquotesingle{}A1 Generated Data\textquotesingle{}}\NormalTok{,}\AttributeTok{xlab=}\StringTok{\textquotesingle{}X\textquotesingle{}}\NormalTok{,}\AttributeTok{ylab=}\StringTok{\textquotesingle{}Y\textquotesingle{}}\NormalTok{)}
+\FunctionTok{abline}\NormalTok{(b\_0,b\_1,}\AttributeTok{col=}\StringTok{\textquotesingle{}red\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Distribution_Creation_files/figure-latex/A1 Distribution-1.pdf}
+
+\#\#A2 Data Generation The next graph plots a dataset generated under
+A2, where the assumption that \(\epsilon_i\) follow a normal
+distribution are relaxed, and rather just requires \(\epsilon_i\) and
+\(\epsilon_j\) are iid with \(Var[\epsilon_i]=\sigma^2\) and
+\(E[\epsilon_i]=0\).
+
+To generate this data, we instead draw random errors from a uniform
+distribution, parameterized in the following way:
+\(f(\epsilon) = \frac{1}{\beta}\cdot I_{(\alpha,\alpha+\beta)}(\epsilon)\),
+with \(\alpha = -\frac{\sqrt{24}}{2}\) and \(\beta = \sqrt{24}\). This
+will result in \(E[\epsilon_i]=0\) and \(Var[\epsilon_i]=\sigma^2=2\).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\#Set seed for dataset generation}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{1}\NormalTok{)}
+
+\DocumentationTok{\#\#Create the distribution }
+\NormalTok{x }\OtherTok{=} \FunctionTok{sort}\NormalTok{(}\FunctionTok{runif}\NormalTok{(n,}\AttributeTok{min=}\DecValTok{0}\NormalTok{,}\AttributeTok{max=}\DecValTok{5}\NormalTok{))}
+\NormalTok{e }\OtherTok{=} \FunctionTok{runif}\NormalTok{(n, }\AttributeTok{min =} \SpecialCharTok{{-}}\FunctionTok{sqrt}\NormalTok{(}\DecValTok{24}\NormalTok{)}\SpecialCharTok{/}\DecValTok{2}\NormalTok{, }\AttributeTok{max =} \SpecialCharTok{{-}}\FunctionTok{sqrt}\NormalTok{(}\DecValTok{24}\NormalTok{)}\SpecialCharTok{/}\DecValTok{2}\SpecialCharTok{+}\FunctionTok{sqrt}\NormalTok{(}\DecValTok{24}\NormalTok{))}
+\NormalTok{y }\OtherTok{=}\NormalTok{ b\_0 }\SpecialCharTok{+}\NormalTok{ b\_1}\SpecialCharTok{*}\NormalTok{x }\SpecialCharTok{+}\NormalTok{ e}
+
+\DocumentationTok{\#\#Generate the plot}
+\FunctionTok{plot}\NormalTok{(y}\SpecialCharTok{\textasciitilde{}}\NormalTok{x,}\AttributeTok{main=}\StringTok{\textquotesingle{}A2 Generated Data\textquotesingle{}}\NormalTok{,}\AttributeTok{xlab=}\StringTok{\textquotesingle{}X\textquotesingle{}}\NormalTok{,}\AttributeTok{ylab=}\StringTok{\textquotesingle{}Y\textquotesingle{}}\NormalTok{)}
+\FunctionTok{abline}\NormalTok{(b\_0,b\_1,}\AttributeTok{col=}\StringTok{\textquotesingle{}red\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Distribution_Creation_files/figure-latex/A2 Distribution-1.pdf}
+
+\hypertarget{a3-data-generation}{%
+\subsection{A3 Data Generation}\label{a3-data-generation}}
+
+This graph below plots the generated dataset under A3, which relaxes the
+iid assumption previously required under A1 and A2. We must also
+preserve that \(E[\epsilon_i]=0\) and \(Var[\epsilon_i]=\sigma^2=2\) and
+that \(\epsilon_i\) and \(\epislon_j\) are uncorrelated for
+\(i \neq j\). To do this, we create two vectors of random errors each
+containing 150 observations, one vector generates \(\epsilon_i\) from
+the uniform distribution above with \(E[\epsilon_i]=0\) and
+\(Var[\epsilon_i]=2\) and the other vector generates \(\epsilon_i\) from
+a normal distribution with \(\mu=0\) and \(\sigma^2=2\).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\#Set the seed for this module}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{1}\NormalTok{)}
+
+\DocumentationTok{\#\#We will relax the iid assumption and have our random error come from two different}
+\DocumentationTok{\#\#distributions, a normal and uniform distribution}
+\NormalTok{x }\OtherTok{=} \FunctionTok{sort}\NormalTok{(}\FunctionTok{runif}\NormalTok{(n,}\AttributeTok{min=}\DecValTok{0}\NormalTok{,}\AttributeTok{max=}\DecValTok{5}\NormalTok{))}
+\NormalTok{e1 }\OtherTok{=} \FunctionTok{runif}\NormalTok{(n}\SpecialCharTok{/}\DecValTok{2}\NormalTok{, }\AttributeTok{min =} \SpecialCharTok{{-}}\FunctionTok{sqrt}\NormalTok{(}\DecValTok{24}\NormalTok{)}\SpecialCharTok{/}\DecValTok{2}\NormalTok{, }\AttributeTok{max =} \SpecialCharTok{{-}}\FunctionTok{sqrt}\NormalTok{(}\DecValTok{24}\NormalTok{)}\SpecialCharTok{/}\DecValTok{2}\SpecialCharTok{+}\FunctionTok{sqrt}\NormalTok{(}\DecValTok{24}\NormalTok{))}
+\NormalTok{e2 }\OtherTok{=} \FunctionTok{rnorm}\NormalTok{(n}\SpecialCharTok{/}\DecValTok{2}\NormalTok{,}\DecValTok{0}\NormalTok{,}\FunctionTok{sqrt}\NormalTok{(sigma\_2))}
+\NormalTok{e }\OtherTok{=} \FunctionTok{c}\NormalTok{(e1,e2)}
+\NormalTok{y }\OtherTok{=}\NormalTok{ b\_0 }\SpecialCharTok{+}\NormalTok{ b\_1}\SpecialCharTok{*}\NormalTok{x }\SpecialCharTok{+}\NormalTok{ e}
+
+\DocumentationTok{\#\#Generate the plot}
+\FunctionTok{plot}\NormalTok{(y}\SpecialCharTok{\textasciitilde{}}\NormalTok{x,}\AttributeTok{main=}\StringTok{\textquotesingle{}A3 Generated Data\textquotesingle{}}\NormalTok{,}\AttributeTok{xlab=}\StringTok{\textquotesingle{}X\textquotesingle{}}\NormalTok{,}\AttributeTok{ylab=}\StringTok{\textquotesingle{}Y\textquotesingle{}}\NormalTok{)}
+\FunctionTok{abline}\NormalTok{(b\_0,b\_1,}\AttributeTok{col=}\StringTok{\textquotesingle{}red\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Distribution_Creation_files/figure-latex/A3 Distribution-1.pdf}
+
+\hypertarget{interpretation}{%
+\subsection{Interpretation:}\label{interpretation}}
+
+One important thing to note is that for each vector of \(x\) values
+generated, the range was from 0-5 as it became more difficult to
+visually assess the differences in the plots over a larger range of x's.
+
+In terms of visual differences, we can see in the A1 Generated Data
+plot, that the points are very normally distributed across the true
+population mean line and it is obvious that the residuals are normally
+distributed. Moving to the A2 Generated Data chart, where the residuals
+are iid on a uniform distribution, we can see that the data are spread
+much more uniformly in relation to the true population mean line. We can
+see this by directly comparing the A1 and A2 plots, in A1 we see a few
+residuals that are straying away from the population mean line and might
+be considered outliers, however in A2 we don't have points that are far
+enough away from the rest of the points to be considered outliers. This
+is likely because the residuals are uniformly distributed so we don't
+observe outlier values like we do from the tails of a normal
+distribution. Finally, in the A3 Generated data plot we can see how the
+points switch from having uniformly distributed residuals to normally
+distributed residuals around \(x=2.5\). Although the residuals are not
+iid from one single distribution, they still come from two distributions
+with the same variance of \(Var[\epsilon_i=]\sigma^2=2\) and where
+\(E[\epsilon_i=0]\), thus satisfying A3, but not A1 or A2.
+
+Note that the \texttt{echo\ =\ FALSE} parameter was added to the code
+chunk to prevent printing of the R code that generated the plot.
+
+\end{document}

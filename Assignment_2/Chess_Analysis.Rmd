@@ -1,0 +1,132 @@
+---
+title: "Chess_Data"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r Data_Pull}
+##Pull in the data
+data = read.csv("D:\\Stat_Learning\\ChessRatingComparison.csv")
+```
+
+
+```{r Dataframe_Exploration}
+##Explore dataframe column names
+print(names(data))
+
+##For this assignment we are told to drop {Timestamp, Chess.com.Username}
+data = subset(data, select = -c(Timestamp,Chess.com.Username) )
+
+##Verify the columns we dropped
+print(names(data))
+```
+
+```{r Part_A}
+##Produce pairwise scatterplot of the data (UCSF.Regular.Rating in top row)
+pairs(USCF.Regular.Rating~.,data=data, cex.labels=1.45)
+```
+
+```{r Part_B_Fit}
+##Fit simply linear regression w/ Y="USCF.Regular.Rating", X="Chess.com.Live.Standard.Rating"
+fit1 <- lm(USCF.Regular.Rating~Chess.com.Live.Standard.Rating,data=data)
+
+##Display the results of the fit
+summary(fit1)
+```
+
+```{r Part_B_Confidence_Intervals}
+##Obtain the 95% confidence intervals
+ci = confint(fit1,level=0.95)
+ci
+```
+
+```{r Part_C}
+##Provide relevant diagnostic plots for the model
+par(mfrow=c(2,2))
+plot(fit1,pch=19,cex=0.1)
+```
+
+```{r Part_D Leverage Points}
+##Output which points have the highest leverage
+# hat values (leverage)
+cbind(sort(hatvalues(fit1)))
+```
+
+```{r Part_D Cooks Distance}
+cbind(sort(cooks.distance(fit1)))
+```
+
+```{r Part_D Explore 339}
+##Explore what the row looks like
+data[339,c("USCF.Regular.Rating","Chess.com.Live.Standard.Rating")]
+```
+
+```{r Part_D Remove Leverage Points}
+data = data[-c(138,272,339), ]
+```
+##Extra code dealing with imputing missing or improper values
+```{r}
+##Summary of Live Rating
+summary(data$Chess.com.Live.Standard.Rating)
+```
+
+```{r}
+##Summary of Standard Rating
+summary(data$USCF.Regular.Rating)
+```
+
+```{r}
+##Count number of rows in the dataset
+nrow(data)
+```
+
+```{r}
+##Cleaning the data
+##Replace 0 values with 100
+data["Chess.com.Live.Standard.Rating"][data["Chess.com.Live.Standard.Rating"] < 100] = 100
+data["USCF.Regular.Rating"][data["USCF.Regular.Rating"] < 100] = 100
+```
+
+```{r Part_D Refit model}
+fit2 <- lm(USCF.Regular.Rating~Chess.com.Live.Standard.Rating,data=data)
+summary(fit2)
+```
+
+```{r Part_D Diagnostic Plots}
+par(mfrow=c(2,2))
+plot(fit2,pch=19,cex=0.1)
+```
+
+```{r Part_D Confidence Intervals}
+ci = confint(fit2,level=0.95)
+ci
+```
+
+```{r Part_D Cook's Distance New Fit}
+##Calculate the new Cook's distances
+cbind(sort(cooks.distance(fit2)))
+```
+
+```{r Part_F Compute Average}
+##Compute what the average Regular Rating would be for a player with 1600 value
+predict(fit2,newdata=data.frame(Chess.com.Live.Standard.Rating=1600),interval="confidence")
+```
+
+```{r Part_F Compute Prediction}
+# 95% prediction interval (uncertainty in a new school at this particular covariate)
+predict(fit2,newdata=data.frame(Chess.com.Live.Standard.Rating=1600),interval="prediction")
+```
+
+```{r Part_G}
+##Remind us of features in dataset
+for (i in (names(data))) {print(i)
+  print(summary(lm(USCF.Regular.Rating~data[,i],data=data)))}
+```
+
+
+
+
+
