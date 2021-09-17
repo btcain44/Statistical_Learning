@@ -123,9 +123,17 @@ predict(fit2,newdata=data.frame(Chess.com.Live.Standard.Rating=1600),interval="p
 ```{r Part_G}
 ##Remind us of features in dataset
 for (i in (names(data))) {print(i)
-  print(summary(lm(USCF.Regular.Rating~data[,i],data=data)))}
+  print(summary(lm(USCF.Regular.Rating~data[,i],data=data)))
+  print(cbind(sort(cooks.distance(lm(USCF.Regular.Rating~data[,i],data=data)))))}
 ```
 
+```{r Turn Based}
+summary(lm(USCF.Regular.Rating~Chess.com.Turn.Based.Standard,data=data[-c(272),]))
+```
+
+```{r FIDE}
+summary(lm(USCF.Regular.Rating~FIDE.Regular.Rating,data=data[-c(272,328,304),]))
+```
 
 
 
